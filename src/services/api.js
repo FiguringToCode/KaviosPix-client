@@ -1,0 +1,56 @@
+import axios from 'axios'
+
+const API_BASE_URL = `${import.meta.env.VITE_SERVER_BASE_URL}` || 'http://localhost:4000'
+
+const api = axios.create({
+    baseURL: API_BASE_URL,
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+
+// Auth APIs
+export const authAPI = {
+    getProfile: () => api.get('/user/profile'),
+    verifyToken: () => api.get('/auth/verify'),
+    logout: () => api.post('/auth/logout'),
+    loginWithGoogle: () => {
+        window.location.href = `${API_BASE_URL}/auth/google`
+    }
+}
+
+// Album APIs
+export const albumAPI = {
+    createAlbum: (data) => api.post('/albums', data),
+    getAllAlbums: () => api.get('/albums'),
+    getAlbum: (albumId) => api.get(`/albums/${albumId}`),
+    updateAlbum: (albumId, data) => api.post(`/albums/${albumId}`, data),
+    shareAlbum: (albumId, emails) => api.post(`/albums/${albumId}/share`, { emails }),
+    deleteAlbum: (albumId) => api.delete(`/albums/${albumId}`)
+}
+
+// Image APIs
+export const imageAPI = {
+    uploadImage: (albumId, formData) => {
+        return api.post(`/albums/${albumId}/images`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
+    getImages: (albumId, tags = null) => {
+        const url = tags ? `/albums/${albumId}/images?tags=${tags}` : `/albums/${albumId}/images`
+        return api.get(url)
+    },
+    getFavoriteImages: (albumId) => api.get(`/albums/${albumId}/images/favorites`),
+    toggleFavorite: (albumId, imageId, isFavorite) => 
+        api.put(`/albums/${albumId}/images/${imageId}/favorite`, { isFavorite }),
+    addComment: (albumId, imageId, comment) => 
+        api.post(`/albums/${albumId}/images/${imageId}/comments`, { comment }),
+    deleteImage: (albumId, imageId) => api.delete(`/albums/${albumId}/images/${imageId}`),
+    // Images now come with cloudinaryUrl from the API response - no need for separate file endpoint
+    getImageUrl: (image) => image.cloudinaryUrl
+}
+
+export default api

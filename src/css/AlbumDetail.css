@@ -1,0 +1,474 @@
+.album-detail-container {
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.album-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 40px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.album-info h1 {
+    margin: 0 0 8px 0;
+    font-size: 2em;
+}
+
+.album-info p {
+    margin: 0 0 12px 0;
+    opacity: 0.9;
+}
+
+.shared-info {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.album-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.album-actions button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.album-actions button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.album-actions .upload-btn {
+    background: white;
+    color: #667eea;
+    border: none;
+    font-weight: 600;
+}
+
+.album-actions .upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.filter-bar {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    gap: 12px;
+}
+
+.filter-bar button {
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-bar button:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.filter-bar button.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.images-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.image-card {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.image-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.image-card:hover .image-overlay {
+    opacity: 1;
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #ffa726;
+    font-size: 18px;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.image-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 0.9em;
+}
+
+.image-info span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.empty-state button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.empty-state button:hover {
+    background: #5568d3;
+}
+
+/* Image Detail Modal */
+.image-detail-modal {
+    background: white;
+    border-radius: 12px;
+    max-width: 1000px;
+    width: 90%;
+    max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.close-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.image-detail-content {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-section {
+    flex: 1;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+.image-section img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.details-section {
+    width: 400px;
+    padding: 24px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.image-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    margin-right: 2.5rem;
+}
+
+.image-header h3 {
+    margin: 0;
+    color: #333;
+    word-break: break-word;
+    flex: 1;
+}
+
+.image-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.image-actions button {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image-actions button:hover {
+    transform: scale(1.1);
+}
+
+.image-actions button.active {
+    color: #ffa726;
+}
+
+.image-actions button.delete {
+    color: #ff5252;
+}
+
+.image-meta {
+    margin-bottom: 12px;
+    color: #666;
+}
+
+.image-meta strong {
+    color: #333;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.image-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tag {
+    padding: 6px 12px;
+    background: #667eea;
+    color: white;
+    border-radius: 16px;
+    font-size: 0.85em;
+}
+
+.comments-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.comments-section h4 {
+    margin: 0 0 16px 0;
+    color: #333;
+}
+
+.comments-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.comment {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.comment strong {
+    color: #667eea;
+    font-size: 0.9em;
+}
+
+.comment p {
+    margin: 6px 0;
+    color: #333;
+}
+
+.comment-date {
+    font-size: 0.75em;
+    color: #999;
+}
+
+.no-comments {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
+
+.comment-form {
+    display: flex;
+    gap: 8px;
+}
+
+.comment-form input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.comment-form input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.comment-form button {
+    padding: 10px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.comment-form button:hover {
+    background: #5568d3;
+}
+
+.file-name {
+    margin-top: 8px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-group.checkbox input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .image-detail-content {
+        flex-direction: column;
+    }
+
+    .details-section {
+        width: 100%;
+        max-height: 50vh;
+    }
+
+    .images-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        padding: 0 20px 20px;
+    }
+
+    .filter-bar {
+        padding: 20px;
+    }
+
+    .album-header {
+        padding: 20px;
+    }
+}
