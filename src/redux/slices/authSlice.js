@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { authAPI } from '../../services/api.js'
-import { clearToken } from '../../utils/token.js'
 
 // Async thunks
 export const checkAuth = createAsyncThunk(
@@ -24,7 +23,6 @@ export const logout = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             await authAPI.logout()
-            clearToken()
             return null
         } catch (error) {
             return rejectWithValue(error.response?.data?.error || 'Logout failed')
@@ -47,7 +45,7 @@ const authSlice = createSlice({
         },
         setUser: (state, action) => {
             state.user = action.payload
-            state.isAuthenticated = !action.payload
+            state.isAuthenticated = !!action.payload
         }
     },
     extraReducers: (builder) => {
@@ -72,6 +70,7 @@ const authSlice = createSlice({
             // Logout
             .addCase(logout.pending, (state) => {
                 state.loading = true
+                state.error = null
             })
             .addCase(logout.fulfilled, (state) => {
                 state.user = null

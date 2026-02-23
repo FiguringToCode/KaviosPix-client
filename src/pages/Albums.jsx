@@ -46,8 +46,8 @@ const Albums = () => {
         }
     }
 
-    const handleLogout = async () => {
-        await dispatch(logout())
+    const handleLogout = () => {
+        dispatch(logout())
         navigate('/login')
     }
 

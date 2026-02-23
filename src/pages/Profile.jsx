@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkAuth } from '../redux/slices/authSlice'
-import { setToken } from '../utils/token'
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -10,14 +9,7 @@ const Profile = () => {
     const { loading } = useSelector((state) => state.auth)
 
     useEffect(() => {
-        const initialize = async () => {
-            const urlParams = new URLSearchParams(window.location.search)
-            const token = urlParams.get('token')
-
-            if(token){
-                setToken(token)
-            }
-
+        const initialize = () => {
             dispatch(checkAuth())
             navigate('/albums', { replace: true })
         }
