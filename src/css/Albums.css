@@ -152,12 +152,12 @@
 }
 
 .album-actions button {
-    padding: 8px;
-    background: #ff5252;
-    color: rgb(255, 255, 255);
-    border: none;
+    padding: 8px !important;
+    background: #ff5252 !important;
+    color: rgb(255, 255, 255) !important;
+    border: none !important;
     border-radius: 6px;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: all 0.3s;
 }
 

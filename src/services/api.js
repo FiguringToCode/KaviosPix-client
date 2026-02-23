@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = `${import.meta.env.VITE_SERVER_BASE_URL}` || 'http://localhost:4000'
+const API_BASE_URL = `${import.meta.env.VITE_SERVER_BASE_URL}`
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -33,22 +33,22 @@ export const albumAPI = {
 // Image APIs
 export const imageAPI = {
     uploadImage: (albumId, formData) => {
-        return api.post(`/albums/${albumId}/images`, formData, {
+        return api.post(`/images/${albumId}/images`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
     },
     getImages: (albumId, tags = null) => {
-        const url = tags ? `/albums/${albumId}/images?tags=${tags}` : `/albums/${albumId}/images`
+        const url = tags ? `/images/${albumId}/images?tags=${tags}` : `/albums/${albumId}/images`
         return api.get(url)
     },
-    getFavoriteImages: (albumId) => api.get(`/albums/${albumId}/images/favorites`),
+    getFavoriteImages: (albumId) => api.get(`/images/${albumId}/images/favorites`),
     toggleFavorite: (albumId, imageId, isFavorite) => 
-        api.put(`/albums/${albumId}/images/${imageId}/favorite`, { isFavorite }),
+        api.put(`/images/${albumId}/images/${imageId}/favorite`, { isFavorite }),
     addComment: (albumId, imageId, comment) => 
-        api.post(`/albums/${albumId}/images/${imageId}/comments`, { comment }),
-    deleteImage: (albumId, imageId) => api.delete(`/albums/${albumId}/images/${imageId}`),
+        api.post(`/images/${albumId}/images/${imageId}/comments`, { comment }),
+    deleteImage: (albumId, imageId) => api.delete(`/images/${albumId}/images/${imageId}`),
     // Images now come with cloudinaryUrl from the API response - no need for separate file endpoint
     getImageUrl: (image) => image.cloudinaryUrl
 }
