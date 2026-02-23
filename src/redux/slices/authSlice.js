@@ -8,6 +8,7 @@ export const checkAuth = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const verifyResponse = await authAPI.verifyToken()
+            console.log(verifyResponse.data.valid)
             if (verifyResponse.data.valid) {
                 const profileResponse = await authAPI.getProfile()
                 return profileResponse.data.user

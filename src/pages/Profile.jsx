@@ -18,7 +18,7 @@ const Profile = () => {
                 setToken(token)
             }
 
-            await dispatch(checkAuth())
+            dispatch(checkAuth())
             navigate('/albums', { replace: true })
         }
         initialize()
