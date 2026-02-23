@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { authAPI } from '../../services/api.js'
+import { clearToken } from '../../utils/token.js'
 
 // Async thunks
 export const checkAuth = createAsyncThunk(
@@ -23,6 +24,7 @@ export const logout = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             await authAPI.logout()
+            clearToken()
             return null
         } catch (error) {
             return rejectWithValue(error.response?.data?.error || 'Logout failed')
