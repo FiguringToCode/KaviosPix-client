@@ -6,7 +6,7 @@ import { checkAuth } from '../redux/slices/authSlice'
 const Profile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { loading, user } = useSelector((state) => state.auth)
+    const { loading } = useSelector((state) => state.auth)
 
     useEffect(() => {
         const initialize = () => {
@@ -29,7 +29,7 @@ const Profile = () => {
         )
     }
 
-    return user
+    return null
 }
 
 export default Profile
