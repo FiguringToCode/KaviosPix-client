@@ -10,7 +10,6 @@ const Albums = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { user } = useSelector((state) => state.auth)
-    console.log(user)
     const { albums, loading } = useSelector((state) => state.albums)
     
     const [showCreateModal, setShowCreateModal] = useState(false)
