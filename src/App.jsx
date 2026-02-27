@@ -67,9 +67,6 @@ function AppRoutes() {
                     )
                 } 
             />
-            
-            {/* Catch all - redirect to login */}
-            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     ) }
 }
