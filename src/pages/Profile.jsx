@@ -33,9 +33,11 @@ const Profile = () => {
                 <div>Loading...</div>
             </div>
         )
+    } else {
+        return (
+            navigate('/albums')
+        )
     }
-
-    return null
 }
 
 export default Profile
