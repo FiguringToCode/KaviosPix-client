@@ -35,7 +35,7 @@ function AppRoutes() {
 
     return (
         <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             
             <Route 
@@ -63,13 +63,13 @@ function AppRoutes() {
                     isAuthenticated ? (
                         <Navigate to="/albums" replace />
                     ) : (
-                        <Navigate to="/login" replace />
+                        <Navigate to="/" replace />
                     )
                 } 
             />
             
             {/* Catch all - redirect to login */}
-            <Route path="*" element={<Navigate to="/login" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     )
 }
