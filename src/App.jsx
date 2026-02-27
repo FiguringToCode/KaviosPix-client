@@ -31,7 +31,7 @@ function AppRoutes() {
                 Loading...
             </div>
         )
-    }
+    } else {
 
     return (
         <Routes>
@@ -71,7 +71,7 @@ function AppRoutes() {
             {/* Catch all - redirect to login */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-    )
+    ) }
 }
 
 function App() {
