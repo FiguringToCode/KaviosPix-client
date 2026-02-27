@@ -51,7 +51,7 @@ export const imageAPI = {
         api.post(`/images/${albumId}/images/${imageId}/comments`, { comment }),
     deleteImage: (albumId, imageId) => api.delete(`/images/${albumId}/images/${imageId}`),
     // Images now come with cloudinaryUrl from the API response - no need for separate file endpoint
-    getImageUrl: (image) => image.cloudinaryUrl
+    getImageUrl: (albumId, imageId) => api.get(`images/${albumId}/images/${imageId}/url`)
 }
 
 export default api

@@ -6,15 +6,21 @@ import { checkAuth } from '../redux/slices/authSlice'
 const Profile = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { loading } = useSelector((state) => state.auth)
+    const { user, loading, isAutheticated } = useSelector((state) => state.auth)
 
     useEffect(() => {
-        const initialize = () => {
             dispatch(checkAuth())
-            navigate('/albums', { replace: true })
+    }, [dispatch])
+
+    useEffect(() => {
+        if(!loading){
+            if(isAutheticated && user){
+                navigate('/albums', { replace: true })
+            } else {
+                navigate('/', { replace: true })
+            }
         }
-        initialize()
-    }, [dispatch, navigate])
+    }, [loading, isAutheticated, user, navigate])
 
     if (loading) {
         return (
