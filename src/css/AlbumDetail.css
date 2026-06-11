@@ -6,7 +6,7 @@
 .album-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 30px 40px;
+    padding: 2rem 2.5rem;
 }
 
 .back-btn {
@@ -19,8 +19,9 @@
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     transition: all 0.3s;
+    font-size: 0.95rem;
 }
 
 .back-btn:hover {
@@ -29,36 +30,40 @@
 
 .album-info h1 {
     margin: 0 0 8px 0;
-    font-size: 2em;
+    font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .album-info p {
     margin: 0 0 12px 0;
     opacity: 0.9;
+    font-size: 0.95rem;
 }
 
 .shared-info {
-    font-size: 0.9em;
+    font-size: 0.85rem;
     opacity: 0.8;
 }
 
 .album-actions {
     display: flex;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 4rem;
+    flex-wrap: wrap;
 }
 
 .album-actions button {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px !important;
+    background: rgba(255, 255, 255, 0.338) !important;
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .album-actions button:hover {
@@ -80,9 +85,10 @@
 .filter-bar {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 1.25rem 2rem;
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .filter-bar button {
@@ -96,6 +102,10 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
 }
 
 .filter-bar button:hover {
@@ -112,10 +122,10 @@
 .images-grid {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px 40px;
+    padding: 0 2rem 2.5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
 }
 
 .image-card {
@@ -145,7 +155,7 @@
     left: 0;
     right: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-    padding: 16px;
+    padding: 1rem;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -182,7 +192,7 @@
     justify-content: space-between;
     align-items: center;
     color: white;
-    font-size: 0.9em;
+    font-size: 0.85rem;
 }
 
 .image-info span {
@@ -193,12 +203,12 @@
 
 .empty-state {
     text-align: center;
-    padding: 60px 20px;
+    padding: 4rem 1.25rem;
     color: #999;
 }
 
 .empty-state button {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     padding: 12px 24px;
     background: #667eea;
     color: white;
@@ -214,17 +224,139 @@
     background: #5568d3;
 }
 
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow: auto;
+    padding: 2rem;
+}
+
+.modal h2 {
+    margin: 0 0 1.5rem 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-group input[type="file"],
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    background: white;
+    color: #333;
+}
+
+.modal-actions button.primary {
+    background: #667eea;
+    color: white;
+    border: none;
+}
+
+.modal-actions button:hover {
+    transform: translateY(-2px);
+}
+
+.modal-actions button.primary:hover {
+    background: #5568d3;
+}
+
+.file-name {
+    margin-top: 8px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.form-group.checkbox input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+}
+
 /* Image Detail Modal */
 .image-detail-modal {
     background: white;
     border-radius: 12px;
     max-width: 1000px;
-    width: 90%;
+    width: 95%;
     max-height: 90vh;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
+    margin: 1rem;
 }
 
 .close-btn {
@@ -265,13 +397,13 @@
 
 .image-section img {
     max-width: 100%;
-    max-height: 90vh;
+    max-height: 85vh;
     object-fit: contain;
 }
 
 .details-section {
     width: 400px;
-    padding: 24px;
+    padding: 1.5rem;
     overflow-y: auto;
     background: #f8f9fa;
 }
@@ -280,8 +412,9 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     margin-right: 2.5rem;
+    gap: 12px;
 }
 
 .image-header h3 {
@@ -289,6 +422,7 @@
     color: #333;
     word-break: break-word;
     flex: 1;
+    font-size: 1.25rem;
 }
 
 .image-actions {
@@ -325,6 +459,7 @@
 .image-meta {
     margin-bottom: 12px;
     color: #666;
+    font-size: 0.9rem;
 }
 
 .image-meta strong {
@@ -349,14 +484,15 @@
 }
 
 .comments-section {
-    margin-top: 24px;
-    padding-top: 24px;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
     border-top: 2px solid #e0e0e0;
 }
 
 .comments-section h4 {
     margin: 0 0 16px 0;
     color: #333;
+    font-size: 1.1rem;
 }
 
 .comments-list {
@@ -425,50 +561,199 @@
     background: #5568d3;
 }
 
-.file-name {
-    margin-top: 8px;
-    color: #666;
-    font-size: 0.9em;
-}
-
-.form-group.checkbox {
-    display: flex;
-    align-items: center;
-}
-
-.form-group.checkbox label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0;
-    cursor: pointer;
-}
-
-.form-group.checkbox input[type="checkbox"] {
-    width: auto;
-    cursor: pointer;
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+    .album-header {
+        padding: 1.5rem 2rem;
+    }
+    
+    .filter-bar {
+        padding: 1.25rem 1.5rem;
+    }
+    
+    .images-grid {
+        padding: 0 1.5rem 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    
+    .details-section {
+        width: 350px;
+    }
 }
 
 @media (max-width: 768px) {
+    .album-header {
+        padding: 1.25rem 1.5rem;
+    }
+    
+    .album-info h1 {
+        font-size: 1.5rem;
+    }
+    
+    .album-actions {
+        display: contents;
+        gap: 8px;
+    }
+    
+    .album-actions button {
+        width: 40%;
+        justify-content: center;
+        margin-top: 0.2rem;
+    }
+    
+    .filter-bar {
+        padding: 1rem 1.25rem;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .filter-bar button {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .images-grid {
+        padding: 0 1.25rem 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .image-detail-modal {
+        width: 98%;
+        max-height: 95vh;
+        margin: 0.5rem;
+    }
+    
     .image-detail-content {
         flex-direction: column;
     }
-
+    
+    .image-section {
+        flex: 0 0 auto;
+        max-height: 40vh;
+    }
+    
+    .image-section img {
+        max-height: 40vh;
+    }
+    
     .details-section {
         width: 100%;
-        max-height: 50vh;
+        max-height: 55vh;
+        padding: 1.25rem;
     }
-
-    .images-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        padding: 0 20px 20px;
+    
+    .image-header {
+        margin-right: 0;
     }
-
-    .filter-bar {
-        padding: 20px;
+    
+    .close-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
     }
+    
+    .comment-form {
+        flex-direction: column;
+    }
+    
+    .comment-form button {
+        width: 100%;
+    }
+}
 
+@media (max-width: 480px) {
     .album-header {
-        padding: 20px;
+        padding: 1rem 1.25rem;
+    }
+    
+    .back-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .album-info h1 {
+        font-size: 1.25rem;
+    }
+    
+    .album-info p {
+        font-size: 0.85rem;
+    }
+    
+    .filter-bar button {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .images-grid {
+        padding: 0 1rem 1.25rem;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+    }
+    
+    .image-card {
+        border-radius: 8px;
+    }
+    
+    .favorite-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    .image-info {
+        font-size: 0.75rem;
+    }
+    
+    .empty-state {
+        padding: 3rem 1rem;
+    }
+    
+    .empty-state button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .modal {
+        padding: 1.5rem;
+        max-width: 100%;
+    }
+    
+    .modal h2 {
+        font-size: 1.25rem;
+    }
+    
+    .details-section {
+        padding: 1rem;
+    }
+    
+    .image-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .tag {
+        padding: 4px 10px;
+        font-size: 0.8em;
+    }
+    
+    .comment-form input {
+        padding: 8px;
+        font-size: 13px;
+    }
+    
+    .comment-form button {
+        padding: 8px 16px;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1440px) {
+    .images-grid {
+        max-width: 1200px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .filter-bar {
+        max-width: 1200px;
     }
 }
