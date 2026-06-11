@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAlbums, createAlbum, deleteAlbum } from '../redux/slices/albumsSlice'
 import { logout } from '../redux/slices/authSlice'
-import { FaPlus, FaFolder, FaShare, FaTrash } from 'react-icons/fa'
+import { FaPlus, FaFolder, FaShare, FaTrash, FaSearch } from 'react-icons/fa'
 import '../css/Albums.css'
 
 const Albums = () => {
@@ -14,6 +14,7 @@ const Albums = () => {
     
     const [showCreateModal, setShowCreateModal] = useState(false)
     const [newAlbum, setNewAlbum] = useState({ name: '', description: '' })
+    const [searchTerm, setSerachTerm] = useState('')
 
     useEffect(() => {
         dispatch(fetchAlbums())
@@ -51,6 +52,8 @@ const Albums = () => {
         navigate('/login')
     }
 
+    const filteredAlbums = albums.filter(album => album.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
     if (loading) {
         return <div className="loading">Loading albums...</div>
     }
@@ -75,6 +78,14 @@ const Albums = () => {
             <div className="albums-content">
                 <div className="albums-actions">
                     <h2>My Albums</h2>
+                    <nav className="navbar bg-body-tertiary">
+                        <div className="container-fluid">
+                            <form className="d-flex" role="search">
+                            <input className="form-control me-2" type="search" placeholder="Search Albums" value={searchTerm} onChange={(e) => setSerachTerm(e.target.value)} aria-label="Search"/>
+                            <button className="btn btn-outline-success" type="submit"><FaSearch /></button>
+                            </form>
+                        </div>
+                    </nav>
                     <button 
                         className="create-album-btn"
                         onClick={() => setShowCreateModal(true)}
@@ -83,7 +94,7 @@ const Albums = () => {
                     </button>
                 </div>
 
-                {albums.length === 0 ? (
+                {filteredAlbums.length === 0 ? (
                     <div className="empty-state">
                         <FaFolder size={64} />
                         <h3>No albums yet</h3>
@@ -91,7 +102,7 @@ const Albums = () => {
                     </div>
                 ) : (
                     <div className="albums-grid">
-                        {albums.map(album => (
+                        {filteredAlbums.map(album => (
                             <div 
                                 key={album.albumId} 
                                 className="album-card"

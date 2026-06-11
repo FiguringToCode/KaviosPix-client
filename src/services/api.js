@@ -23,25 +23,25 @@ export const authAPI = {
 
 // Album APIs
 export const albumAPI = {
-    createAlbum: (data) => api.post('/albums', data),
-    getAllAlbums: () => api.get('/albums'),
+    createAlbum: (data) => api.post('/albums/create/album', data),
+    getAllAlbums: () => api.get('/albums/all'),
     getAlbum: (albumId) => api.get(`/albums/${albumId}`),
-    updateAlbum: (albumId, data) => api.post(`/albums/${albumId}`, data),
-    shareAlbum: (albumId, emails) => api.post(`/albums/${albumId}/share`, { emails }),
-    deleteAlbum: (albumId) => api.delete(`/albums/${albumId}`)
+    updateAlbum: (albumId, data) => api.post(`/albums/update/${albumId}`, data),
+    shareAlbum: (albumId, emails) => api.post(`/albums/share/${albumId}`, { emails }),
+    deleteAlbum: (albumId) => api.delete(`/albums/delete/${albumId}`)
 }
 
 // Image APIs
 export const imageAPI = {
     uploadImage: (albumId, formData) => {
-        return api.post(`/images/${albumId}/images`, formData, {
+        return api.post(`/images/upload/${albumId}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
     },
     getImages: (albumId, tags = null) => {
-        const url = tags ? `/images/${albumId}/images?tags=${tags}` : `/albums/${albumId}/images`
+        const url = tags ? `/images/${albumId}/images?tags=${tags}` : `/images/${albumId}/images`
         return api.get(url)
     },
     getFavoriteImages: (albumId) => api.get(`/images/${albumId}/images/favorites`),

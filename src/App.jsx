@@ -28,6 +28,9 @@ function AppRoutes() {
                 height: '100vh',
                 fontSize: '1.2em'
             }}>
+                <div className="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
                 Loading...
             </div>
         )
