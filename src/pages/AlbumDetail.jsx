@@ -169,7 +169,19 @@ const AlbumDetail = () => {
         : images
 
     if (loading && images.length === 0) {
-        return <div className="loading">Loading album...</div>
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh'
+            }}>
+                <div className="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+                <div>Loading...</div>
+            </div>
+        )
     }
 
     if (!currentAlbum) {

@@ -55,7 +55,19 @@ const Albums = () => {
     const filteredAlbums = albums.filter(album => album.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
     if (loading) {
-        return <div className="loading">Loading albums...</div>
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh'
+            }}>
+                <div className="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+                <div>Loading...</div>
+            </div>
+        )
     }
 
     return (
