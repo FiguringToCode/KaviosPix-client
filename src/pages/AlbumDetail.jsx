@@ -193,17 +193,19 @@ const AlbumDetail = () => {
     return (
         <div className="album-detail-container">
             <header className="album-header">
-                <button className="back-btn" onClick={() => navigate('/albums')}>
-                    <FaArrowLeft /> Back to Albums
-                </button>
-                <div className="album-info">
-                    <h1>{currentAlbum.name}</h1>
-                    <p>{currentAlbum.description || 'No description'}</p>
-                    {currentAlbum.sharedWith && currentAlbum.sharedWith.length > 0 && (
-                        <div className="shared-info">
-                            Shared with: {currentAlbum.sharedWith.join(', ')}
-                        </div>
-                    )}
+                <div className='d-flex justify-content-between gap-2'>
+                    <div className="album-info">
+                        <h1>{currentAlbum.name}</h1>
+                        <p>{currentAlbum.description || 'No description'}</p>
+                        {currentAlbum.sharedWith && currentAlbum.sharedWith.length > 0 && (
+                            <div className="shared-info">
+                                Shared with: {currentAlbum.sharedWith.join(', ')}
+                            </div>
+                        )}
+                    </div>
+                    <button className="back-btn" onClick={() => navigate('/albums')}>
+                        <FaArrowLeft /> Back to Albums
+                    </button>
                 </div>
                 <div className="album-actions">
                     {isOwner && (

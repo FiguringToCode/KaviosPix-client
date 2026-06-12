@@ -16,10 +16,9 @@
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 8px 16px;
+    padding: 8px 10px;
     border-radius: 6px;
     cursor: pointer;
-    margin-bottom: 1.25rem;
     transition: all 0.3s;
     font-size: 0.95rem;
 }
@@ -47,8 +46,11 @@
 .album-actions {
     display: flex;
     gap: 12px;
-    margin-top: 4rem;
+    margin-top: 1.5rem;
     flex-wrap: wrap;
+    position: relative;
+    top: 0;
+    bottom: 0;
 }
 
 .album-actions button {
@@ -121,10 +123,10 @@
 
 .images-grid {
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 0 2rem 2.5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 2fr));
     gap: 16px;
 }
 
@@ -573,7 +575,7 @@
     
     .images-grid {
         padding: 0 1.5rem 2rem;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     }
     
     .details-section {
@@ -585,18 +587,24 @@
     .album-header {
         padding: 1.25rem 1.5rem;
     }
+
+    .back-btn {
+        gap: 8px;
+        font-size: x-small;
+    }
     
     .album-info h1 {
         font-size: 1.5rem;
     }
     
     .album-actions {
-        display: contents;
+        flex-direction: row;
         gap: 8px;
+        left: 0.2rem;
     }
     
     .album-actions button {
-        width: 40%;
+        width: 32%;
         justify-content: center;
         margin-top: 0.2rem;
     }
@@ -614,7 +622,7 @@
     
     .images-grid {
         padding: 0 1.25rem 1.5rem;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         gap: 12px;
     }
     
@@ -668,8 +676,18 @@
     }
     
     .back-btn {
-        padding: 6px 12px;
-        font-size: 0.85rem;
+        display: none;
+    }
+
+    .album-actions {
+        flex-wrap: nowrap;
+        left: 0.2rem;
+    }
+
+    .album-actions button {
+        font-size: x-small;
+        justify-content: center;
+        margin-top: 0.2rem;
     }
     
     .album-info h1 {
@@ -687,7 +705,7 @@
     
     .images-grid {
         padding: 0 1rem 1.25rem;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         gap: 10px;
     }
     
@@ -749,7 +767,7 @@
 /* Large screens */
 @media (min-width: 1440px) {
     .images-grid {
-        max-width: 1200px;
+        max-width: 1400px;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
     
